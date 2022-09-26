@@ -4,6 +4,6 @@ module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['assets.example.com'],
+    domains: ['rb.gy'],
   },
 };
