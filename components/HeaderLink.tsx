@@ -6,10 +6,10 @@ import React, { ReactNode } from 'react';
 interface HeaderLinkType {
   Icon: SvgIconComponent;
   text: string;
-  feed?: any;
-  active?: any;
-  avatar?: any;
-  hidden?: any;
+  feed?: boolean;
+  active?: boolean;
+  avatar?: boolean;
+  hidden?: boolean;
 }
 
 function HeaderLink({
