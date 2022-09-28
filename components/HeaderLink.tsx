@@ -1,10 +1,13 @@
 import { useSession, signOut } from 'next-auth/react';
 
 import { SvgIconComponent } from '@mui/icons-material';
+
 import React, { ReactNode } from 'react';
 
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+
 interface HeaderLinkType {
-  Icon: SvgIconComponent;
+  Icon: SvgIconComponent | any;
   text: string;
   feed?: boolean;
   active?: boolean;
@@ -20,6 +23,7 @@ function HeaderLink({
   avatar,
   hidden,
 }: HeaderLinkType) {
+  const { data: session } = useSession();
   return (
     <div
       className={`${
@@ -31,7 +35,11 @@ function HeaderLink({
       } ${active && '!text-black dark:!text-white'}`}
       onClick={() => avatar && signOut()}
     >
-      {avatar ? <Icon className="!h-7 !w-7 lg:!-mb-1" /> : <Icon />}
+      {avatar ? (
+        <Icon className="!h-7 !w-7 lg:!-mb-1" src={session?.user?.image} />
+      ) : (
+        <Icon />
+      )}
 
       <h4
         className={`text-sm ${
