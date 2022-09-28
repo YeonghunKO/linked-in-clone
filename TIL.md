@@ -4,6 +4,8 @@
 
 2. tailwind에서는 custom class기능을 제공한다. global.css에서 @layer Components에서 custom가능
 
+3. `min-width:max-content` --> prevent size from shrinking
+
 # TYPESCRIPT
 
 # NEXT JS
@@ -22,3 +24,5 @@
 # 궁금증, 할일
 
 1. dark 모드로 바꾸면 dom안에 어느 element의 클래스가 바뀌는 걸까?
+
+   - next themes랑 tailwind가 서로 어떻게 협력을 하는 것일까?
