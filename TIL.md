@@ -8,6 +8,8 @@
 
 4. 부모에 `group` 클래스를 추가하고 특정 자식에 `group-hover:text-white` 라고 하면 마우스를 올렸을 때 그 자식의 text색깔만 흰색으로 바뀐다.
 
+5. truncate class => elipsis
+
 # TYPESCRIPT
 
 # NEXT JS
@@ -38,8 +40,28 @@
 
 4. \_app.tsx의 pageProps는 말그대로 모든 page 컴포넌트에 넘어오는 parameter를 의미하는군. 즉, Home page에서 apple이라는 prop을 serverSideProp 함수로 넘겨주면 \_app.tsx에서 pageProps로 받을 수 있다는 말이다.
 
-# 궁금증, 할일
+# 궁금증
 
 1. dark 모드로 바꾸면 dom안에 어느 element의 클래스가 바뀌는 걸까?
 
    - next themes랑 tailwind가 서로 어떻게 협력을 하는 것일까?
+
+2. Modal - Form 안에 초록색 로딩은 뭐지???
+
+# 할일
+
+## feed에 form추가하고 게시글 mongodb에 저장후 post로 display하기
+
+1. atom 폴더
+
+2. Components - Input.tsx안에 modal state 추가
+
+3. Components - Modal.tsx 추가
+
+4. Post api 추가
+
+5. Components - Feed.tsx 추가
+
+6. pages - index에 ssr함수에 db받아서 posts 넘겨주기
+
+7. dashboard 페이지 받아왔을때 post의 사진이 SSR인지 봐라. 즉 flickering이 안되고 바로 나타나야한다.
