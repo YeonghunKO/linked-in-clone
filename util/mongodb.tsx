@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
-let uri = process.env.MONGODB_URI;
-let dbName = process.env.MONGODB_DB;
+let uri = process.env.MONGODB_URI as string;
+let dbName = process.env.MONGODB_DB as string;
 
 let cachedClient: any = null;
 let cachedDb: any = null;
@@ -20,18 +20,26 @@ if (!dbName) {
 
 export async function connectToDatabase() {
   if (cachedClient && cachedDb) {
+    await cachedClient.connect();
     return { client: cachedClient, db: cachedDb };
   }
 
-  const client = MongoClient.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  // const client = await MongoClient.connect(uri, {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  // });
 
-  const db = await client.db(dbName);
+  // const db = await client.db(dbName);
+  const client = await MongoClient.connect(uri);
+  await client.connect();
+  const database = client.db(dbName);
+  const postsCollection = database.collection('posts');
+  // const client = await MongoClient.connect(uri);
+  // const db = client.db(dbName);
+  // await client.connect();
 
   cachedClient = client;
-  cachedDb = db;
+  cachedDb = postsCollection;
 
-  return { client, db };
+  return { client, db: postsCollection };
 }

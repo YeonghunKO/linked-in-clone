@@ -7,29 +7,33 @@ export default async function handler(
 ) {
   const { method, body } = req;
 
-  const { db } = await connectToDatabase();
+  const { db, client } = await connectToDatabase();
 
   if (method === 'GET') {
+    console.log('GET request from post index api');
+
     try {
-      const posts = await db
-        .collection('posts')
-        .find({})
-        .sort({ timestamp: -1 })
-        .toArray();
+      const posts = await db.find({}).sort({ timestamp: -1 }).toArray();
       res.status(200).json(posts);
     } catch (error) {
-      res.status(500).json(error);
+      console.log('error in GET request from post index api');
+
+      console.log(error);
+
+      res.status(500).json([]);
+    } finally {
+      client.close();
     }
   }
 
   if (method === 'POST') {
     try {
-      const post = await db
-        .collection('posts')
-        .insertOne({ ...body, timestamp: new Date() });
+      const post = await db.insertOne({ ...body, timestamp: new Date() });
       res.status(201).json(post);
     } catch (error) {
       res.status(500).json(error);
+    } finally {
+      client.close();
     }
   }
 }

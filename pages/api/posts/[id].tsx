@@ -11,7 +11,7 @@ export default async function handler(
     query: { id },
   } = req;
 
-  const { db } = await connectToDatabase();
+  const { db, client } = await connectToDatabase();
 
   //   if (method === "DELETE") {
   //     try {
@@ -19,6 +19,8 @@ export default async function handler(
   //       res.status(200).json({ message: "The post has been deleted!!" });
   //     } catch (error) {
   //       res.status(500).json(error);
-  //     }
+  //     } finally {
+  // client.close()
+  // }
   //   }
 }
