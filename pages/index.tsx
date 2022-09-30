@@ -10,8 +10,13 @@ import { AnimatePresence } from 'framer-motion';
 import Modal from '../components/Modal';
 import { useRecoilState } from 'recoil';
 import { modalState, modalTypeState } from '../atoms/modalAtoms';
+import { connectToDatabase } from '../util/mongodb';
 
-function Home() {
+import { PostType } from '../types/Post';
+
+function Home({ posts }: { posts: PostType[] }) {
+  console.log('show posts in Home component', posts);
+
   const router = useRouter();
   const [modalOpen, setModalOpen] = useRecoilState<boolean>(modalState);
   const [modalType, setModalType] = useRecoilState<string>(modalTypeState);
@@ -35,7 +40,7 @@ function Home() {
       <main className="flex justify-center gap-x-5 px-4 sm:px-12">
         <div className="flex flex-col md:flex-row gap-5">
           <Sidebar />
-          <Feed />
+          <Feed posts={posts} />
         </div>
         <AnimatePresence>
           {modalOpen && (
@@ -61,9 +66,25 @@ export async function getServerSideProps(context: any) {
     };
   }
 
+  // Get posts on SSR
+  const { db } = await connectToDatabase();
+
+  console.log('start get posts from index get server side props');
+
+  const posts = await db.find({}).sort({ timestamp: -1 }).toArray();
+
   return {
     props: {
       session,
+      posts: posts.map((post: PostType) => ({
+        _id: post._id.toString(),
+        input: post.input,
+        photoUrl: post.photoUrl,
+        username: post.username,
+        email: post.email,
+        userImg: post.userImg,
+        createdAt: post.createdAt,
+      })),
     },
   };
 }

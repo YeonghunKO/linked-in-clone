@@ -4,7 +4,7 @@ function Post({ post }: { post: PostType }) {
   return (
     <>
       <div>{post.input}</div>
-      <img src={post.photoUrl} alt={post.input} />
+      {post.photoUrl && <img src={post.photoUrl} alt={post.input} />}
     </>
   );
 }
