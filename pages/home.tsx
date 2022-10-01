@@ -88,12 +88,23 @@ function Home({ providers }: { providers: typeof SessionProvider }) {
 
 export default Home;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const providers = await getProviders();
 
   return {
     props: {
       providers,
     },
+    revalidate: 10,
   };
 }
+
+// export async function getServerSideProps() {
+//   const providers = await getProviders();
+
+//   return {
+//     props: {
+//       providers,
+//     },
+//   };
+// }
