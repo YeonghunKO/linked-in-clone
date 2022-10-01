@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../atoms/modalAtoms';
 import { handlePostState } from '../atoms/postAtoms';
@@ -15,8 +15,8 @@ function Form() {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [handlePost, setHandlePost] = useRecoilState(handlePostState);
 
-  const uploadPost = async (e: Event) => {
-    e.preventDefault();
+  const upload = async (event: Event): Promise<any> => {
+    event.preventDefault();
     setIsLoading(true);
     const response = await fetch('/api/posts', {
       method: 'POST',
@@ -59,7 +59,7 @@ function Form() {
       <button
         className="absolute -bottom-2 right-4 font-medium bg-blue-400 hover:bg-blue-500 disabled:text-black/40 disabled:bg-white/75 disabled:cursor-not-allowed text-white rounded-full px-3.5 py-1"
         type="submit"
-        onClick={uploadPost}
+        onClick={(e: any) => upload(e)}
         disabled={isDiabled}
       >
         {isLoading && <span className="fas fa-spinner fa-spin mr-1"></span>}
