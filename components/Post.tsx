@@ -18,16 +18,18 @@ import { modalState, modalTypeState } from '../atoms/modalAtoms';
 import TimeAgo from 'timeago-react';
 import { useSession } from 'next-auth/react';
 
-function Post({ post, modalPost }: { post: PostType; modalPost: boolean }) {
+function Post({ post, modalPost }: { post: PostType; modalPost?: boolean }) {
   const LIMIT_POST_LENGTH = 150;
 
   const { data: session } = useSession();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   const [postState, setPostState] = useRecoilState(getPostState);
+  const [handlePost, setHandlePost] = useRecoilState(handlePostState);
+
   const [showInput, setShowInput] = useState(false);
   const [liked, setLiked] = useState(false);
-  const [handlePost, setHandlePost] = useRecoilState(handlePostState);
+  const [isLoading, setIsLoading] = useState(false);
 
   const truncate = (string: string, n: number) =>
     string?.length > n ? (
@@ -40,12 +42,14 @@ function Post({ post, modalPost }: { post: PostType; modalPost: boolean }) {
     );
 
   const deletePost = async () => {
+    setIsLoading(true);
     const response = await fetch(`/api/posts/${post._id}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     });
 
     setHandlePost(true);
+    setIsLoading(false);
     setModalOpen(false);
   };
 
@@ -156,6 +160,7 @@ function Post({ post, modalPost }: { post: PostType; modalPost: boolean }) {
             className="postButton focus:text-red-400"
             onClick={deletePost}
           >
+            {isLoading && <span className="fas fa-spinner fa-spin mr-1"></span>}
             <DeleteRoundedIcon />
             <h4>Delete post</h4>
           </button>
