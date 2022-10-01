@@ -14,6 +14,20 @@
 
 7. work-break를 쓰면 text가 box바깥으로 삐져나가는 지점에 자동으로 line break를 해준다.
 
+8. fontawesome에서 로딩바때문에 생기는 removeChild 에러
+
+   - 해당페이지 리턴 부분에 아래 코드를 추가하면 된다.
+   - fontawesome에서 i태그를 svg로 바꾸는 과정에서 문제가 발생한듯 하다.
+
+   ```html
+   <script
+     src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
+     data-auto-replace-svg="nest"
+   ></script>
+   ```
+
+   참고자료:https://nextjs.org/docs/messages/no-sync-scripts
+
 # TYPESCRIPT
 
 # NEXT JS
@@ -44,30 +58,25 @@
 
 4. \_app.tsx의 pageProps는 말그대로 모든 page 컴포넌트에 넘어오는 parameter를 의미하는군. 즉, Home page에서 apple이라는 prop을 serverSideProp 함수로 넘겨주면 \_app.tsx에서 pageProps로 받을 수 있다는 말이다.
 
+5. `Hydration failed because the initial UI does not match what was rendered on the server` 에러
+
+   - 서버에서 만든 html이랑 실제 브라우저에 랜더링되는 html 문서랑 달라서 일어나는 현상이다.
+   - 예를들어서, window api가 코드내부에 있다고 할때 서버는 이를 인식하지 못하지만 브라우저는 이를 인식하여 다르게 랜더링할 수 있다.
+   - 이때는 useEffect를 써서 해결가능하다
+
+   - 또는 p태그가 div태그를 감싸면 이 에러가 날 수 있다. 시멘틱하게 마크업 하지 않으면 이 에러가 발생한다.
+
+참고
+
+- https://nextjs.org/docs/messages/react-hydration-error
+- https://stackoverflow.com/questions/71706064/react-18-hydration-failed-because-the-initial-ui-does-not-match-what-was-render
+
 # 궁금증
 
 1. dark 모드로 바꾸면 dom안에 어느 element의 클래스가 바뀌는 걸까?
 
    - next themes랑 tailwind가 서로 어떻게 협력을 하는 것일까?
 
-2. Modal - Form 안에 초록색 로딩은 뭐지???
-
-3. 사실 dark bg color는 variables로 남겨두는게 좋다.
-
 # 할일
-
-## Post 컴포넌트 완성
-
-1. read more 과 더불어 read less 도 붙여주기
-
-2. modalPost인지 아닌지 prop으로 받아오기
-
-3. 다른 recoilState 추가하기
-
-4. modal 안에 gifup 타입 추가!
-
-5. delete api 추가
-
-## Wigezts
 
 ## home page는 ssg로 만들기
