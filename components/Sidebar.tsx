@@ -20,8 +20,8 @@ function Sidebar() {
           />
         </div>
         <Avatar
-          onClick={signOut}
-          src={session?.user?.image}
+          onClick={() => signOut()}
+          src={session?.user?.image as string}
           className="!h-14 !w-14 !border-2 !absolute !top-4 !cursor-pointer"
         />
         <div className="mt-5 py-4 space-x-0.5">

@@ -1,8 +1,6 @@
-import { getSession, useSession } from 'next-auth/react';
+import { getSession } from 'next-auth/react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Script from 'next/script';
-import { useRouter } from 'next/router';
 
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';

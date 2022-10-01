@@ -12,12 +12,13 @@ function Input() {
   const { data: session } = useSession();
   const [modalOpen, setModalOpen] = useRecoilState<boolean>(modalState);
   const [modalType, setModalType] = useRecoilState<string>(modalTypeState);
+  console.log(session);
 
   return (
     <div className="bg-white dark:bg-[#1D2226] rounded-lg p-3 space-y-3 border border-gray-300 dark:border-none">
       <div className="flex items-center space-x-2">
         <Avatar
-          src={session?.user?.image}
+          src={session?.user?.image as string}
           className="!h-10 !w-10 cursor-pointer"
         />
         <motion.button

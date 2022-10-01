@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import { PostType } from '../types/Post';
 
 export const handlePostState = atom({
   key: 'handlePostState',
@@ -7,7 +8,7 @@ export const handlePostState = atom({
 
 export const getPostState = atom({
   key: 'getPostState',
-  default: {},
+  default: {} as PostType,
 });
 
 export const useSSRPostsState = atom({

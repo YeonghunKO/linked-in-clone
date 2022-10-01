@@ -64,7 +64,7 @@ const Modal = ({
   type: string;
 }) => {
   const { data: session } = useSession();
-  const post: PostType = useRecoilValue(getPostState);
+  const post = useRecoilValue<PostType>(getPostState);
 
   return (
     <Backdrop onClick={handleClose}>
@@ -79,7 +79,7 @@ const Modal = ({
         >
           <div className="flex items-center justify-between border-b border-white/75 px-4 py-2.5">
             <h4 className="text-xl">Create a post</h4>
-            <IconButton onClick={handleClose}>
+            <IconButton onClick={(e: any) => handleClose(e)}>
               <CloseRoundedIcon className="h-7 w-7 dark:text-white/75" />
             </IconButton>
           </div>
@@ -87,7 +87,7 @@ const Modal = ({
           <div className="p-4 space-y-2">
             <div className="flex items-center space-x-2">
               <Avatar
-                src={session?.user?.image}
+                src={session?.user?.image as string}
                 className="!h-11 !w-11"
                 alt="modal-avatar"
               />
