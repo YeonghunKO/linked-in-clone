@@ -10,6 +10,10 @@
 
 5. truncate class => elipsis
 
+6. 커서가 내려갈때 내려가다가 해당 elment가 맨위에 왔을때 맨위에 딱 달라붙게하려면 sticky prop을 써라
+
+7. work-break를 쓰면 text가 box바깥으로 삐져나가는 지점에 자동으로 line break를 해준다.
+
 # TYPESCRIPT
 
 # NEXT JS
@@ -48,20 +52,22 @@
 
 2. Modal - Form 안에 초록색 로딩은 뭐지???
 
+3. 사실 dark bg color는 variables로 남겨두는게 좋다.
+
 # 할일
 
-## feed에 form추가하고 게시글 mongodb에 저장후 post로 display하기
+## Post 컴포넌트 완성
 
-1. atom 폴더
+1. read more 과 더불어 read less 도 붙여주기
 
-2. Components - Input.tsx안에 modal state 추가
+2. modalPost인지 아닌지 prop으로 받아오기
 
-3. Components - Modal.tsx 추가
+3. 다른 recoilState 추가하기
 
-4. Post api 추가
+4. modal 안에 gifup 타입 추가!
 
-5. Components - Feed.tsx 추가
+5. delete api 추가
 
-6. pages - index에 ssr함수에 db받아서 posts 넘겨주기
+## Wigezts
 
-7. dashboard 페이지 받아왔을때 post의 사진이 SSR인지 봐라. 즉 flickering이 안되고 바로 나타나야한다.
+## home page는 ssg로 만들기

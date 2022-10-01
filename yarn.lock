@@ -2595,6 +2595,18 @@
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
 
+"timeago-react@^3.0.5":
+  "integrity" "sha512-1k/aDt+ADpcABCmg3BIBuZSa7aSxolmuYFkdcpL7mlNkFcDAK/KwuxLf68gowhM7Oq3vWTE7LPeq3kLkSt45Jg=="
+  "resolved" "https://registry.npmjs.org/timeago-react/-/timeago-react-3.0.5.tgz"
+  "version" "3.0.5"
+  dependencies:
+    "timeago.js" "^4.0.0"
+
+"timeago.js@^4.0.0":
+  "integrity" "sha512-a7wPxPdVlQL7lqvitHGGRsofhdwtkoSXPGATFuSOA2i1ZNQEPLrGnj68vOp2sOJTCFAQVXPeNMX/GctBaO9L2w=="
+  "resolved" "https://registry.npmjs.org/timeago.js/-/timeago.js-4.0.2.tgz"
+  "version" "4.0.2"
+
 "to-fast-properties@^2.0.0":
   "integrity" "sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog=="
   "resolved" "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-2.0.0.tgz"

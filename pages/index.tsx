@@ -15,8 +15,6 @@ import { connectToDatabase } from '../util/mongodb';
 import { PostType } from '../types/Post';
 
 function Home({ posts }: { posts: PostType[] }) {
-  console.log('show posts in Home component', posts);
-
   const router = useRouter();
   const [modalOpen, setModalOpen] = useRecoilState<boolean>(modalState);
   const [modalType, setModalType] = useRecoilState<string>(modalTypeState);
@@ -68,8 +66,6 @@ export async function getServerSideProps(context: any) {
 
   // Get posts on SSR
   const { db } = await connectToDatabase();
-
-  console.log('start get posts from index get server side props');
 
   const posts = await db.find({}).sort({ timestamp: -1 }).toArray();
 
