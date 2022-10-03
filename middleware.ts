@@ -15,8 +15,6 @@ export async function middleware(request: NextRequest) {
       secureCookie: process.env.NODE_ENV === 'production',
     });
 
-    console.log('session', session);
-
     if (!session) {
       return NextResponse.redirect(`${origin}/home`);
     }
