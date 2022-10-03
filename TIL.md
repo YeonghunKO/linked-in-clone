@@ -74,7 +74,9 @@
 5. `request to http://localhost:3000/api/auth/providers failed, reason: connect ECONNREFUSED 127.0.0.1:3000` 에러
    - linked-in-clone 를 build하던도중 발생한 에러이다.
    - 정확히 말하면, home page 를 build하던도중 발생한 에러같다.
-   - home page같은 경우 getStaticProps안에 getProviders를 비동기로 받아오고있다. getProviders는 `/api/auth/providers` url로 데이터를 fetching한다. 그러나 build 하는 시점에는 서버를 열수가 없다. 그래서 에러가 나는 것 같다.
+   - home page같은 경우 getStaticProps안에 getProviders를 비동기로 받아오고있다. getProviders는 `/api/auth/providers` url로 데이터를 fetching한다. 그러나 build 하는 시점에는 서버를 열수가 없다. 그래서 에러가 나는 것 같다. 그래서 getServerSideProps를 사용하거나 database를 직접적으로 가져와야한다.
+
+참고: https://nextjs.org/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly
 
 # 궁금증
 
