@@ -14,6 +14,9 @@ export async function middleware(request: NextRequest) {
       secret: process.env.JWT_SECRET,
       secureCookie: process.env.NODE_ENV === 'production',
     });
+
+    console.log('session', session);
+
     if (!session) {
       return NextResponse.redirect(`${origin}/home`);
     }
@@ -22,5 +25,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: '/',
+  matcher: ['/', '/home'],
 };
